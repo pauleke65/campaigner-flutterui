@@ -1,5 +1,5 @@
 import 'package:campaigner/configuration.dart';
-import 'package:campaigner/custom/election_widget.dart';
+import 'package:campaigner/custom/election_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -70,8 +70,14 @@ class _ParticipateScreenState extends State<ParticipateScreen>
             child: TabBarView(
               controller: _controller,
               children: [
-                ElectionWidget(width: width),
-                Switch(value: true, onChanged: (_) {}),
+                ElectionListWidget(
+                    color: infoColorGreen,
+                    width: width,
+                    elections: ongoingParticipate),
+                ElectionListWidget(
+                    color: primaryColor,
+                    width: width,
+                    elections: previouslyParticipated),
               ],
             ),
           )

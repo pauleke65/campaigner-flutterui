@@ -1,5 +1,4 @@
 import 'package:campaigner/configuration.dart';
-import 'package:campaigner/pages/enter_pin_page.dart';
 import 'package:flutter/material.dart';
 
 class SigninPage extends StatefulWidget {

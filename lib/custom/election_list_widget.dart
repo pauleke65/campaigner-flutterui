@@ -1,10 +1,60 @@
+import 'package:campaigner/models/elections.dart';
 import 'package:flutter/material.dart';
 
 import '../configuration.dart';
 
-class ElectionWidget extends StatelessWidget {
-  const ElectionWidget({Key key, this.width}) : super(key: key);
+class ElectionListWidget extends StatelessWidget {
+  const ElectionListWidget({
+    Key key,
+    this.width,
+    this.color,
+    this.elections,
+  }) : super(key: key);
+
   final double width;
+  final Color color;
+  final List<Election> elections;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: elections.length,
+      itemBuilder: (builder, index) {
+        return ElectionWidget(
+            width: width,
+            color: color,
+            name: elections[index].name,
+            locality: elections[index].locality,
+            from: elections[index].from,
+            startTime: elections[index].startTime,
+            to: elections[index].to,
+            endTime: elections[index].endTime);
+      },
+    );
+  }
+}
+
+class ElectionWidget extends StatelessWidget {
+  const ElectionWidget({
+    Key key,
+    @required this.width,
+    @required this.color,
+    @required this.name,
+    @required this.locality,
+    @required this.from,
+    @required this.startTime,
+    @required this.to,
+    @required this.endTime,
+  }) : super(key: key);
+
+  final double width;
+  final Color color;
+  final String name;
+  final String locality;
+  final String from;
+  final String startTime;
+  final String to;
+  final String endTime;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +85,7 @@ class ElectionWidget extends StatelessWidget {
                 Container(
                   width: width * 0.015,
                   decoration: BoxDecoration(
-                    color: Colors.green,
+                    color: color,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(5),
                       bottomLeft: Radius.circular(5),
@@ -50,29 +100,29 @@ class ElectionWidget extends StatelessWidget {
                     children: [
                       SizedBox(height: 10),
                       Text(
-                        "Product Manager",
+                        name,
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'SF Pro Display',
                         ),
                       ),
                       Text(
-                        "Xylino, New Delhi",
+                        locality,
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "From: 10-Oct-2019 at 8:00AM",
+                        "From: $from at $startTime",
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        "To: 13-Oct-2019 till 9:00PM",
+                        "To: $to till $endTime",
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),
