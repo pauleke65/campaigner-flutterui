@@ -45,26 +45,45 @@ class _ParticipateScreenState extends State<ParticipateScreen>
             ),
           ),
         ],
-        bottom: TabBar(
-          unselectedLabelColor: Colors.grey[600],
-          labelColor: primaryColor,
-          labelStyle: TextStyle(fontWeight: FontWeight.bold),
-          unselectedLabelStyle: TextStyle(
-              fontWeight: FontWeight.w400, backgroundColor: Colors.white),
-          controller: _controller,
-          tabs: [
-            Tab(text: 'Ongoing Elections'),
-            Tab(text: 'Previously Participated'),
-          ],
-        ),
+        // bottom:
       ),
-      body: TabBarView(
-        controller: _controller,
+      body: Column(
         children: [
-          ElectionWidget(width: width),
-          Switch(value: true, onChanged: (_) {}),
+          Container(
+            color: Colors.white,
+            child: TabBar(
+              unselectedLabelColor: Colors.grey[600],
+              labelColor: primaryColor,
+              labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              unselectedLabelStyle: TextStyle(
+                fontWeight: FontWeight.w400,
+              ),
+              controller: _controller,
+              tabs: [
+                Tab(text: 'Ongoing Elections'),
+                Tab(text: 'Previously Participated'),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: TabBarView(
+              controller: _controller,
+              children: [
+                ElectionWidget(width: width),
+                Switch(value: true, onChanged: (_) {}),
+              ],
+            ),
+          )
         ],
       ),
+      // body: TabBarView(
+      //   controller: _controller,
+      //   children: [
+      //     ElectionWidget(width: width),
+      //     Switch(value: true, onChanged: (_) {}),
+      //   ],
+      // ),
     );
   }
 }
