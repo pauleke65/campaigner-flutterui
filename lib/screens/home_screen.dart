@@ -44,7 +44,9 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w600)),
                 SizedBox(height: 15),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/participate');
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     width: MediaQuery.of(context).size.width * 0.9,

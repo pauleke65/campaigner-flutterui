@@ -1,4 +1,5 @@
 import 'package:campaigner/screens/home_screen.dart';
+import 'package:campaigner/screens/participate.dart';
 import 'package:campaigner/screens/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'screens/welcome_screen.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => WelcomeScreen(),
         '/signin': (context) => SigninScreen(),
         '/home': (context) => HomeScreen(),
+        '/participate': (context) => ParticipateScreen(),
       },
     );
   }
