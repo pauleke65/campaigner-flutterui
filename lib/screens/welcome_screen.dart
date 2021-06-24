@@ -38,17 +38,22 @@ class WelcomeScreen extends StatelessWidget {
               scale: 0.9,
             ),
             SizedBox(height: 70),
-            Container(
-              alignment: Alignment.center,
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                'Sign up',
-                style: TextStyle(color: primaryColor, fontSize: 17),
+            MaterialButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/signup');
+              },
+              child: Container(
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  'Sign up',
+                  style: TextStyle(color: primaryColor, fontSize: 17),
+                ),
               ),
             ),
             SizedBox(height: 10),

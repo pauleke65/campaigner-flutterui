@@ -2,12 +2,12 @@ import 'package:campaigner/models/elections.dart';
 import 'package:flutter/material.dart';
 
 //Colors
-Color primaryColor = Color(0xFF007AFF);
-Color textColorLight = Color(0xFFF8F8F8);
-Color textColorDark = Color(0xFF727272);
-Color infoColorGreen = Color(0xFF4CD964);
-Color infoColorRed = Color(0xFFFF2D55);
-Color infoColorYellow = Color(0xFFFFCC00);
+final Color primaryColor = Color(0xFF007AFF);
+final Color textColorLight = Color(0xFFF8F8F8);
+final Color textColorDark = Color(0xFF727272);
+final Color infoColorGreen = Color(0xFF4CD964);
+final Color infoColorRed = Color(0xFFFF2D55);
+final Color infoColorYellow = Color(0xFFFFCC00);
 
 //Text
 String createAccText =
