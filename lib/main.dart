@@ -1,3 +1,4 @@
+import 'package:campaigner/screens/add_elections.dart';
 import 'package:campaigner/screens/candidates_screen.dart';
 import 'package:campaigner/screens/conduct_screen.dart';
 import 'package:campaigner/screens/home_screen.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignupScreen(),
         'verification': (context) => VerificationScreen(),
         '/candidates': (context) => CandidatesScreen(),
+        '/addElection': (context) => AddElectionsScreen(),
       },
     );
   }

@@ -70,7 +70,9 @@ class _ConductScreenState extends State<ConductScreen> {
       body: elections[_selectedIndex],
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/addElection');
+        },
         child: Icon(
           Icons.add,
         ),
