@@ -70,14 +70,22 @@ class _ParticipateScreenState extends State<ParticipateScreen>
             child: TabBarView(
               controller: _controller,
               children: [
-                ElectionListWidget(
-                    color: infoColorGreen,
-                    width: width,
-                    elections: ongoingParticipate),
-                ElectionListWidget(
-                    color: primaryColor,
-                    width: width,
-                    elections: previouslyParticipated),
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'verification');
+                  },
+                  child: ElectionListWidget(
+                      color: infoColorGreen,
+                      width: width,
+                      elections: ongoingParticipate),
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  child: ElectionListWidget(
+                      color: primaryColor,
+                      width: width,
+                      elections: previouslyParticipated),
+                ),
               ],
             ),
           )
