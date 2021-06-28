@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/participate': (context) => ParticipateScreen(),
         '/conduct': (context) => ConductScreen(),
         '/signup': (context) => SignupScreen(),
-        'verification': (context) => VerificationScreen(),
+        '/verification': (context) => VerificationScreen(),
         '/candidates': (context) => CandidatesScreen(),
         '/addElection': (context) => AddElectionsScreen(),
       },

@@ -1,4 +1,5 @@
 import 'package:campaigner/models/elections.dart';
+import 'package:campaigner/models/candidates.dart';
 import 'package:flutter/material.dart';
 
 //Colors
@@ -179,7 +180,7 @@ List<Election> suspendedElections = [
     endTime: '9:00 PM',
   ),
   Election(
-    name: "Senetor Y16",
+    name: "Senator Y16",
     locality: 'LNMIIT, JAIPUR',
     from: '10-Oct-2019',
     to: '13-oct-2019',
@@ -202,4 +203,13 @@ List<Election> suspendedElections = [
     startTime: '8:00 AM',
     endTime: '9:00 PM',
   ),
+];
+
+//candidates
+List<Candidates> candidates = [
+  Candidates(name: "Pakhi Mangal", team: 'OKDWNW'),
+  Candidates(name: "Pakhi Mangal 2", team: 'OKDWNW 2'),
+  Candidates(name: "Pakhi Mangal 3", team: 'OKDWNW 3'),
+  Candidates(name: "Pakhi Mangal 4", team: 'OKDWNW 4'),
+  Candidates(name: "Pakhi Mangal 5", team: 'OKDWNW 2'),
 ];

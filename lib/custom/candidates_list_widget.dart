@@ -1,28 +1,22 @@
 import 'package:campaigner/models/candidates.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+
 import '../configuration.dart';
 
-class CandidatesScreen extends StatefulWidget {
-  const CandidatesScreen({Key key, this.post, this.locality}) : super(key: key);
+class CandidatesList extends StatefulWidget {
+  const CandidatesList({Key key, this.candidates, this.post, this.locality})
+      : super(key: key);
+  final List<Candidates> candidates;
   final String post;
   final String locality;
 
   @override
-  _CandidatesScreenState createState() => _CandidatesScreenState();
+  _CandidatesListState createState() => _CandidatesListState();
 }
 
-class _CandidatesScreenState extends State<CandidatesScreen> {
+class _CandidatesListState extends State<CandidatesList> {
   int _selectedIndex;
-  List<Candidates> rejectedCandidates = [candidates[0]];
-
-  void rejectFunction() {
-    setState(() {
-      rejectedCandidates.insert(0, candidates[_selectedIndex]);
-      candidates.removeAt(_selectedIndex);
-    });
-  }
 
   Widget styledButton({
     BuildContext context,
@@ -43,7 +37,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                       "Confirm your selection?",
                     ),
                     content: Text(
-                        "You have selected ${candidates[index].name} for the post of ${widget.post} at ${widget.locality}"),
+                        "You have selected ${widget.candidates[index].name} for the post of ${widget.post} at ${widget.locality}"),
                     actions: [
                       CupertinoDialogAction(
                         child: Text('No'),
@@ -97,7 +91,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                     ],
                   );
                 })
-            : rejectFunction();
+            : {};
       },
       child: Container(
         alignment: Alignment.center,
@@ -115,7 +109,22 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
     );
   }
 
-  Widget candidateCard(BuildContext context, int index, Candidates candidate) {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: widget.candidates.length,
+        itemBuilder: (builder, index) {
+          return _selectedIndex == index
+              ? ColorFiltered(
+                  colorFilter:
+                      ColorFilter.mode(Colors.blue[100], BlendMode.softLight),
+                  child: candidateCard(context, index),
+                )
+              : candidateCard(context, index);
+        });
+  }
+
+  Widget candidateCard(BuildContext context, int index) {
     return Container(
       color: Colors.transparent,
       padding: EdgeInsets.only(top: 5),
@@ -130,7 +139,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
             backgroundColor: Colors.transparent,
             context: context,
             builder: (builder) => GestureDetector(
-              //  behavior: HitTestBehavior.opaque,
+              behavior: HitTestBehavior.opaque,
               onTap: () {
                 setState(() {
                   _selectedIndex = null;
@@ -164,16 +173,15 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
           );
         },
         child: ListTile(
-          contentPadding: EdgeInsets.all(1),
           leading: CircleAvatar(
             radius: 30,
           ),
           title: Text(
-            candidate.name,
+            widget.candidates[index].name,
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
           subtitle: Text(
-            'Team: ${candidate.team}',
+            'Team: ${widget.candidates[index].team}',
             style: TextStyle(
               color: textColorDark,
               fontSize: 15,
@@ -185,90 +193,6 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
             size: 30,
           ),
         ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        centerTitle: true,
-        backgroundColor: primaryColor,
-        elevation: 0,
-        title: Text(
-          "Select Candidate",
-          style: TextStyle(fontWeight: FontWeight.w600),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            child: MaterialButton(
-              onPressed: () {},
-              child: Text(
-                "Cancel",
-                style: TextStyle(color: Colors.grey[300], fontSize: 17),
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: candidates.length,
-            itemBuilder: (builder, index) {
-              return _selectedIndex == index
-                  ? ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                          Colors.blue[100], BlendMode.softLight),
-                      child: candidateCard(context, index, candidates[index]),
-                    )
-                  : candidateCard(context, index, candidates[index]);
-            },
-          ),
-          ColorFiltered(
-            colorFilter:
-                ColorFilter.mode(Colors.grey[200], BlendMode.softLight),
-            child: AbsorbPointer(
-              absorbing: true,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  rejectedCandidates.length == 0
-                      ? SizedBox()
-                      : Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: Text(
-                            "Rejected Candidates",
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                  Expanded(
-                    flex: 1,
-                    child: ListView.builder(
-                      itemCount: rejectedCandidates.length,
-                      itemBuilder: (builder, index) {
-                        return candidateCard(
-                            context, index, rejectedCandidates[index]);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
       ),
     );
   }

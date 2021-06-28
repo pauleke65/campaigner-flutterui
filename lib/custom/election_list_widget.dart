@@ -1,4 +1,5 @@
 import 'package:campaigner/models/elections.dart';
+import 'package:campaigner/screens/verification_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../configuration.dart';
@@ -20,15 +21,27 @@ class ElectionListWidget extends StatelessWidget {
     return ListView.builder(
       itemCount: elections.length,
       itemBuilder: (builder, index) {
-        return ElectionWidget(
-            width: width,
-            color: color,
-            name: elections[index].name,
-            locality: elections[index].locality,
-            from: elections[index].from,
-            startTime: elections[index].startTime,
-            to: elections[index].to,
-            endTime: elections[index].endTime);
+        return MaterialButton(
+          onPressed: () {
+            print('e list ${elections[index].name}');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => VerificationScreen(
+                          post: elections[index].name,
+                          locality: elections[index].locality,
+                        )));
+          },
+          child: ElectionWidget(
+              width: width,
+              color: color,
+              name: elections[index].name,
+              locality: elections[index].locality,
+              from: elections[index].from,
+              startTime: elections[index].startTime,
+              to: elections[index].to,
+              endTime: elections[index].endTime),
+        );
       },
     );
   }

@@ -1,10 +1,13 @@
+import 'package:campaigner/screens/candidates_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../configuration.dart';
 
 class VerificationScreen extends StatelessWidget {
-  const VerificationScreen({Key key}) : super(key: key);
-
+  const VerificationScreen({Key key, this.post, this.locality})
+      : super(key: key);
+  final String post;
+  final String locality;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +98,14 @@ class VerificationScreen extends StatelessWidget {
             SizedBox(height: 50),
             MaterialButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/candidates');
+                print('verify $post');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => CandidatesScreen(
+                              locality: locality,
+                              post: post,
+                            )));
               },
               child: Container(
                 alignment: Alignment.center,
